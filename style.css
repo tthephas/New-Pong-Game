@@ -1,0 +1,181 @@
+body {
+    background-color: green;
+    font-family: 'Press Start 2P', cursive;
+}
+#wholeStartBody {
+    width: 100vw;
+    height: 100vh;
+}
+
+#wholeGameBody {
+    width: 100vw;
+    height: 100vh;
+}
+
+#wholeEndBody {
+    width: 100vw;
+    height: 100vh;
+}
+
+#gameHeader {
+    text-align: center;
+    font-size: 128px;
+    margin: 15px 50px;
+}
+
+canvas {
+    background-color: lightgray;
+    width: 100%;
+    height: 100%;
+    
+}
+#container {
+    width: 1150px;
+    height: 550px;
+    display: grid;
+    grid-template-columns: 200px 950px;
+    margin: 0px 225px;
+    text-align: center;
+    font-size: 38px;
+    border: 1px solid black;
+    
+}
+.stats {
+    border: 5px solid rgb(37, 64, 73);
+    padding-top: 15px;
+    font-size: 35px;
+}
+#level {
+    grid-column: 1;
+    grid-row: 1;
+    width: 200px;
+    background-color: lightcoral;
+    
+}
+#levelcount {
+    grid-column: 1;
+    grid-row: 2;
+    width: 200px;
+    background-color: lightgray;
+    
+}
+#score {
+    grid-column: 1;
+    grid-row: 3;
+    width: 200px;
+    background-color: lightcoral;
+}
+#scorecount {
+    grid-column: 1;
+    grid-row: 4;
+    width: 200px;
+    background-color: lightgray;
+    
+}
+#lives {
+    grid-column: 1;
+    grid-row: 5;
+    width: 200px;
+    background-color: lightcoral;
+    
+}
+#livescount {
+    grid-column: 1;
+    grid-row: 6;
+    width: 200px;
+    background-color: lightgray;
+    
+
+}
+main {
+    
+    grid-column: 2;
+    grid-row: 1 / 7;
+    background-color: rgb(101, 84, 84);
+    border: 5px solid black;
+}
+
+
+#startButton {
+    height: 100px;
+    width: 400px;
+    text-align: center;
+    font-size: 28px;
+    margin: 20px 600px;
+    background-color: lightgray;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    outline: none;
+    border: 2px solid grey;
+    font-family: 'Press Start 2P', cursive;
+    
+}
+  
+#startHeader {
+    text-align: center;
+    font-size: 110px;
+    margin: 75px 25px;
+}
+  
+  
+  
+button:hover {background-color: rgb(120, 118, 118)}
+  
+  
+  
+/* The popup form - hidden by default */
+.instructions-popup {
+    display: none;
+    position: fixed;
+    top: 300px;
+    right: 75px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+  
+/* Add styles to the form container */
+.instructions-container {
+    max-width: 500px;
+    padding: 15px;
+    background-color: lightgray;
+    color: black;
+    font-size: 17px;
+    margin: auto;
+    text-align: center;
+    
+}
+  
+  
+  /* Add a red background color to the cancel button */
+.instructions-popup-cancel {
+    background-color: rgb(238, 102, 102);
+    color: black;
+    position: relative;
+    text-align: center;
+    font-size: 17px;
+    width: 100px;
+    border: 2px solid black;
+    cursor: pointer;
+    padding: 8px;
+}
+
+#endHeader {
+    text-align: center;
+    font-size: 125px;
+    margin: 75px 50px;
+}
+#endButton {
+    height: 100px;
+    width: 400px;
+    text-align: center;
+    font-size: 30px;
+    margin: 40px 600px;
+    background-color: lightgray;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    outline: none;
+    border: 2px solid grey;
+    font-family: 'Press Start 2P', cursive;
+}

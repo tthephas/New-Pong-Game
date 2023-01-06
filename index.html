@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- /* put the start page div here */ -->
+
+<body >
+<div id="wholeStartBody">
+    <h1 id="startHeader">WELCOME TO PONG</h1>
+    <div> 
+        <button id="startButton" class="instructions" onclick="popUpInstructions()">Instructions</button>
+        <div class="instructions-popup" id="myInstructions">
+            <form action="/action_page.php" class="instructions-container">
+              <h3>Start ball moving by pressing the UP arrow <br><br>
+                Use the LEFT and RIGHT arrows to move your paddle <br><br>
+                Don't let the ball hit the ground !!!<br><br>
+                Score one point for every time the ball hits your paddle<br><br>
+                Move up levels every 10 points</h3>
+              <h2 class="instructions-popup-cancel" onclick="closeForm()">CLOSE</h2>
+
+            </form>
+        </div>  
+    </div>
+    <div>
+        
+        <button id = "startButton" class="startGame" onclick="goToGamePage()">Start Game</button> 
+        
+    </div>
+
+    
+</div>
+
+
+<!-- then the game body-->
+
+
+<div id="wholeGameBody">
+    <h1 id="gameHeader">PONG</h1>
+    <div id="container">
+        <div class="stats" id="level">Level</div>
+        <div class="stats" id="levelcount">11</div>
+        <div class="stats" id="score">Score</div>
+        <div class="stats" id="scorecount">47</div>
+        <div class="stats" id="lives">Lives</div>
+        <div class="stats" id="livescount">3</div>
+        <main>
+            <canvas id="canvas"></canvas>
+        </main>
+        <div class="stats" id="movement"><br></br></div>
+        
+        <div class="stats" id="message">HOLD FOR MESSAGES</div>
+    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    
+</div>
+
+
+<!-- then the end body -->
+
+
+<div id="wholeEndBody">
+    <h1 id="endHeader">GAME OVER</h1>
+    <div>
+        
+        <button id="endButton" class="startGame" onclick="goToGamePage()">Play Again</button> 
+        
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+
+
+</html>
+
