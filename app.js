@@ -534,6 +534,7 @@ function closeForm() {
     document.getElementById("myInstructions").style.display = "none";
 }
 
+// Function to use to reset everything, after user clicks one of the start game buttons, from start or end page. 
 const resetScoreboard = () => {
     livesCount.innerHTML = 3
     counterForLives = 3
