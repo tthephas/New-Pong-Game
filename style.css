@@ -20,7 +20,8 @@ body {
 #gameHeader {
     text-align: center;
     font-size: 128px;
-    margin: 15px 50px;
+    margin: 25px 50px;
+
 }
 
 canvas {

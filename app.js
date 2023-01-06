@@ -427,6 +427,10 @@ const detectHit = (thing) => {
             levelCount.innerHTML = counterForLevel + 2
             ballOne.speed = 24
             message.textContent = 'Things just got super fast'
+        }  else if ((counterForScore >= 80) && (counterForScore < 90))  {
+            levelCount.innerHTML = counterForLevel + 2
+            ballOne.speed = 27
+            message.textContent = 'Things just got even faster'
         }  
         // Can easily keep going if needed. But very tough to beat this level.
     }    
@@ -538,6 +542,9 @@ const resetScoreboard = () => {
     scoreCount.innerHTML = 0
     counterForScore = 0 
     message.textContent = 'PRESS UP ARROW TO START'
+    ballOne.speed = 10
+    ballOne.speedX = 11
+    player.width = 145 
 }
 
 // When user clicks Start Game, it takes them to the game page.
