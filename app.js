@@ -224,8 +224,8 @@ class Ball {
                 this.x += this.speedX
                 /// this stopped it
                 /// instead of stopping it. lets bounce it back. 
-                if (this.x + this.width >= gameBoard.width) {
-                    this.x = gameBoard.width - this.width
+                if (this.x + this.radius >= gameBoard.width) {
+                    this.x = gameBoard.width - this.radius
                     ballOne.bounceDirectionDownLeftFromRightWall()
                 }
                 //// no bounce, this means got past player. end game or lose life 
@@ -268,8 +268,8 @@ class Ball {
                 /// dont bounce from the bottom here!!! figure this out later. means game over or player loses life
                 /// Game over message works
 
-                if (this.y + this.height >= gameBoard.height) {
-                    this.y = gameBoard.height - this.height
+                if (this.y + this.radius >= gameBoard.height) {
+                    this.y = gameBoard.height - this.radius
                     message.textContent = 'Life lost, you have ' + counterForScore + ' points. Press UP to start'
 
 
@@ -299,8 +299,8 @@ class Ball {
                 this.y -= this.speed
                 this.x += this.speedX
                 /// this stopped it
-                if (this.x + this.width >= gameBoard.width) {
-                    this.x = gameBoard.width - this.width
+                if (this.x + this.radius >= gameBoard.width) {
+                    this.x = gameBoard.width - this.radius
                     ballOne.bounceDirectionUpLeft()
                 }
                 if (this.y <= 0) {
@@ -382,9 +382,9 @@ counterForLevel = 1
 const detectHit = (thing) => {
     //Use a big if statement to see if any side of the ball hits any side of the paddle or walls.
     if (ballOne.x < thing.x + thing.width
-        && ballOne.x + ballOne.width > thing.x
+        && ballOne.x + ballOne.radius > thing.x
         && ballOne.y < thing.y + thing.height
-        && ballOne.y + ballOne.height > thing.y) {
+        && ballOne.y + ballOne.radius > thing.y) {
 
         // has a new direction on a hit
         // this worked. need to reverse for any direction
@@ -420,7 +420,7 @@ const detectHit = (thing) => {
             message.textContent = 'Your paddle just shrunk'
         } else if ((counterForScore >= 50) && (counterForScore < 60))  {
             levelCount.innerHTML = counterForLevel + 2
-            player.width = 105
+            player.width = 100
             message.textContent = 'Your paddle just shrunk, again'
         }  else if ((counterForScore >= 60) && (counterForScore < 70))  {
             levelCount.innerHTML = counterForLevel + 2
