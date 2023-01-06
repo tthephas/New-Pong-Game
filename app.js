@@ -43,7 +43,8 @@ const livesCount = document.getElementById('livescount')
 livesCount.innerHTML = 3
 
 // Start at three, go down by one when player lets ball hit the ground
-counterForLives = 3
+// Commented out, relocated to the restart board button/function
+// counterForLives = 3
 
 
 
@@ -329,18 +330,13 @@ class Ball {
         }
         // This puts a ball on board to start
         this.render = function () {
-            //ctx.fillStyle = this.color
-            //ctx.fillRect(this.x, this.y, this.width, this.height)
+
             
-            /// does this make a ball? yes! LOOKS LIKE ONE. DOESNT MOVE THOUGH
+            /// Makes a sphere ball
             ctx.beginPath()
-            // put THIS for all these and then fix in constructor too
-            //ctx.arc(400, 50, 10, 0, Math.PI * 2)
-            // x , y , radius, start angle, end angle
             ctx.arc(this.x, this.y, this.radius, this.sAngle, this.eAngle)
             ctx.fill()
-            //ctx.stroke()
-            //ctx.closePath()
+
         }
         /// This bounces the ball from the paddle
         this.reverseDirection = function () {
@@ -375,8 +371,9 @@ const ballOne = new Ball(400, 50, 8, 0, Math.PI * 2, 'black')
 // Use the ball AND paddle x, y, width, height
 // Ball seems to go thru paddle by a pixel, can account for this later if needed
 // Counter to keep track of score
-counterForScore = 0
-counterForLevel = 1
+// Relocated to a restart board function
+// counterForScore = 0
+// counterForLevel = 1
 
 
 const detectHit = (thing) => {
@@ -533,10 +530,24 @@ function closeForm() {
     document.getElementById("myInstructions").style.display = "none";
 }
 
+const resetScoreboard = () => {
+    livesCount.innerHTML = 3
+    counterForLives = 3
+    levelCount.innerHTML = 1
+    counterForLevel = 1
+    scoreCount.innerHTML = 0
+    counterForScore = 0 
+    message.textContent = 'PRESS UP ARROW TO START'
+}
+
 // When user clicks Start Game, it takes them to the game page.
 // Also used this function on End Game page, to bring back to game page if player wants to play again.
 const goToGamePage = () => {
+
     document.getElementById("wholeStartBody").style.display = 'none'
     document.getElementById("wholeGameBody").style.display = ''
     document.getElementById("wholeEndBody").style.display = 'none'
+
+    resetScoreboard()
+    
 }
