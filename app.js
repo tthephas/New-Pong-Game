@@ -145,11 +145,12 @@ class Paddle {
 
 
 class Ball {
-    constructor(x, y, width, height, color) {
+    constructor(x, y, radius, sAngle, eAngle, color) {
         this.x = x
         this.y = y
-        this.width = width
-        this.height = height
+        this.radius = radius
+        this.sAngle = sAngle
+        this.eAngle = eAngle
         this.color = color
         // Property to help with moving. Reminder that paddle is 35 now. Trying 5 for testing to see ball moving easier. 
         this.speed = ballSpeed
@@ -230,8 +231,8 @@ class Ball {
                 //// no bounce, this means got past player. end game or lose life 
                 /// Game over message works
                 //// need to stop the ball right when bottom is hit, for visual reality look
-                if (this.y + this.height >= gameBoard.height) {
-                    this.y = gameBoard.height - this.height
+                if (this.y + this.radius >= gameBoard.height) {
+                    this.y = gameBoard.height - this.radius
                     message.textContent = 'Life lost, you have ' + counterForScore + ' points. Press UP to start'
                     //try giving x a zero immediately. zero lets it show bottom right. negative 50 makes it disappear
                     //decided to just immediately replace the ball in start position after losing a life. Stops the loop. replaces the ball. Gets it ready to be directed again.                 
@@ -328,13 +329,17 @@ class Ball {
         }
         // This puts a ball on board to start
         this.render = function () {
-            ctx.fillStyle = this.color
-            ctx.fillRect(this.x, this.y, this.width, this.height)
+            //ctx.fillStyle = this.color
+            //ctx.fillRect(this.x, this.y, this.width, this.height)
             
             /// does this make a ball? yes! LOOKS LIKE ONE. DOESNT MOVE THOUGH
-            //ctx.beginPath()
+            ctx.beginPath()
+            // put THIS for all these and then fix in constructor too
             //ctx.arc(400, 50, 10, 0, Math.PI * 2)
-            //ctx.fill()
+            // x , y , radius, start angle, end angle
+            ctx.arc(this.x, this.y, this.radius, this.sAngle, this.eAngle)
+            ctx.fill()
+            //ctx.stroke()
             //ctx.closePath()
         }
         /// This bounces the ball from the paddle
@@ -359,7 +364,7 @@ class Ball {
 // Paddle at 360x is about middle. Y 335 is just barely off bottom so that ball can visually pass the paddle if it gets by.
 /// Adding in a paddleWidth variable so that i can shrink it later when difficulty rises. Original 145.
 const player = new Paddle(360, 335, 145, 14, 'black')
-const ballOne = new Ball(400, 50, 15, 12, 'black')
+const ballOne = new Ball(400, 50, 8, 0, Math.PI * 2, 'black')
 
 
 /////    COLLISION  DETECTION ///////////
