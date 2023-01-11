@@ -87,9 +87,8 @@ class Paddle {
         this.height = height
         this.color = color
         // Property to help with moving. Changing this will make faster, moving more pixels per move. Make variable later to make difficulty higher.
-        // 15 too slow. 35 is good for now.
         this.speed = paddleSpeed
-        // Add directions. The paddle can only move left and right. Leaving all four for now
+        // Add directions. The paddle can only move left and right. Leaving all four for now, but keeping false.
         this.direction = {
             up: false,
             down: false,
@@ -101,7 +100,6 @@ class Paddle {
 
         // Methods tied to key events
         // This sets direction for paddle to go that way
-        // All four for now, but up down dropped later
         this.setDirection = function (key) {
             if (key == 'ArrowLeft') { this.direction.left = true}
             if (key == 'ArrowRight') { this.direction.right = true}
@@ -115,7 +113,7 @@ class Paddle {
         //Movement handler. 
         // Gives the paddle direction properties. Only need left and right.
         this.movePlayer = function () {
-            //send guy moving in dirx that is true
+            //send paddle moving in dirx that is true
             if (this.direction.left) {
                 this.x -= this.speed
                 if (this.x <= 0) {
@@ -130,7 +128,7 @@ class Paddle {
                 }
             }
         }
-        // This puts a player on board to start
+        // This puts a paddle on board to start
         this.render = function () {
             ctx.fillStyle = this.color
             ctx.fillRect(this.x, this.y, this.width, this.height)
@@ -138,7 +136,7 @@ class Paddle {
     }
 }
 
-
+// Different constructor for the ball b/c it is a sphere and not a rectangle
 class Ball {
     constructor(x, y, radius, sAngle, eAngle, color) {
         this.x = x
@@ -214,10 +212,10 @@ class Ball {
 
             /// build a diagonal. to start, go down right. both are positive x,y
             if (this.direction.diagDownRight) {
-                // got one ball to move diagonal!!! later can mess with more x or y to make not diagonal. can mess with the speed variable
+                // This moves the ball diagonal. later can mess with more x or y to make not diagonal. can mess with the speed variable
                 this.y += this.speed
                 this.x += this.speedX
-                /// this stopped it
+                
                 /// instead of stopping it. lets bounce it back. 
                 if (this.x + this.radius >= gameBoard.width) {
                     this.x = gameBoard.width - this.radius
@@ -260,7 +258,7 @@ class Ball {
                     this.x = 0
                     ballOne.bounceDirectionDownRightFromLeftWall()
                 }
-                /// dont bounce from the bottom here!!! figure this out later. means game over or player loses life
+                /// dont bounce from the bottom here!!! means game over or player loses life
                 /// Game over message works
 
                 if (this.y + this.radius >= gameBoard.height) {
@@ -347,7 +345,7 @@ class Ball {
 
 /// Player and ball are good size now. Will need to give player size a variable for later, to make the paddle shorter or longer based on level.
 // Paddle at 360x is about middle. Y 335 is just barely off bottom so that ball can visually pass the paddle if it gets by.
-/// Adding in a paddleWidth variable so that i can shrink it later when difficulty rises. Original 145.
+
 const player = new Paddle(360, 335, 145, 14, 'black')
 const ballOne = new Ball(400, 50, 8, 0, Math.PI * 2, 'black')
 
@@ -360,10 +358,6 @@ const ballOne = new Ball(400, 50, 8, 0, Math.PI * 2, 'black')
 // Use the ball AND paddle x, y, width, height
 // Ball seems to go thru paddle by a pixel, can account for this later if needed
 // Counter to keep track of score
-// Relocated to a restart board function
-// counterForScore = 0
-// counterForLevel = 1
-
 
 const detectHit = (thing) => {
     //Use a big if statement to see if any side of the ball hits any side of the paddle or walls.
@@ -444,7 +438,7 @@ const gameLoop = () => {
 
     player.render()
     player.movePlayer()
-    //movement.textContent = `${player.x}, ${player.y}`.  Only used this for testing.
+    //movement.textContent = `${player.x}, ${player.y}`.  Only used this for testing. Shows current x, y of ball moving.
     ballOne.render()
     ballOne.movePlayer()
 }
@@ -457,7 +451,7 @@ document.addEventListener('keydown', (e) => {
     // when a key is pressed, set the direction
     player.setDirection(e.key)
 
-    // get the ball started , no keyup function b/c it jsut goes
+    // get the ball started , no keyup function b/c it just goes
     ballOne.startDirection(e.key)
 })
 
@@ -544,5 +538,4 @@ const goToGamePage = () => {
     document.getElementById("wholeEndBody").style.display = 'none'
 
     resetScoreboard()
-    
 }
