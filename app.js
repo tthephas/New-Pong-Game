@@ -1,4 +1,4 @@
-// Start of PONG game. First version. 
+// Start of PONG game. Final version. 
 
 //////////   RULES FOR THE GAME /////////
 
@@ -28,13 +28,14 @@ const message = document.getElementById('message')
 ////////////////////    BUILD OUT SCOREBOARD (BONUS, LEVELS AND LIVES) ///////////////////
 
 ///  Setup variables for Score. Start at zero. Goes up one with each hit to the paddle, not hit to walls. Big difference. Will start a counter and see if i can insert that counter into the text for the scoreboard. ID is "scorecount".
+// These will target the elements on the scoreboard section, so we can manipulate those numbers throughout the game
 
 // Now shows zero and is a number. Going to add to it thru the hit detector on the paddle.
 // Added a counter near the hit detector. Goes up 1 by 1 when hit paddle. Shows in scoreboard and message board when game ends.
 const scoreCount = document.getElementById('scorecount')
 scoreCount.innerHTML = 0
 
-/// Setup variable for level. Start at zero. Go up every 15 points. Then we'll increase difficulty as well.
+/// Setup variable for level. Start at zero. Go up every 10 points. Then we'll increase difficulty as well.
 const levelCount = document.getElementById('levelcount')
 levelCount.innerHTML = 1
 
@@ -42,17 +43,13 @@ levelCount.innerHTML = 1
 const livesCount = document.getElementById('livescount')
 livesCount.innerHTML = 3
 
-// Start at three, go down by one when player lets ball hit the ground
-// Commented out, relocated to the restart board button/function
-// counterForLives = 3
-
 
 
 ///////////////    VARIABLES FOR LEVELS PAST ONE, INCREASED DIFFICULTY ///////////
 
 ///  We can do a few things to make the game harder. The ball can go faster. There can be two balls. The ball can bounce "oddly" or just travel "oddly", which means the x and y are different. The paddle can shrink in size too. Can make paddle slower as well but that might be too hard. 
 
-/// Didnt work up here. Trying to move them down to the hit detector. Cant move them there. Then program doesnt recognize them.
+
 ///  35 seems EASY for paddle
 let paddleSpeed = 35
 /// 15 seems EASY for ball 
@@ -63,13 +60,10 @@ let ballSpeedX = 11
 let paddleWidth = 145
 
 
-
 // Set the game context to 2D
 // Save it to a variable to reference later. Using CTX
 // Tells code to work within the context of the canvas
 const ctx = gameBoard.getContext('2d')
-
-
 
 
 ////////////    SETUP  ////////////////
@@ -83,7 +77,7 @@ gameBoard.height = 360
 
 ///////////    PADDLE AND BALL  //////////////
 
-// These are slightly the same type objects so i'm going to use a class. The ball is square (circle later) and the paddle is rectangle. But both have movement needed, height , width, color , and coordinates.
+// These are slightly the same type objects so i'm going to use a class. The ball is circle and the paddle is rectangle. But both have movement needed, height , width, color , and coordinates.
 
 class Paddle {
     constructor(x, y, width, height, color) {
@@ -289,12 +283,9 @@ class Ball {
                     }
                     this.y -= this.speed
                     this.x += this.speedX
-
                 }
-
             }
         
-
             /// going up and right
             if (this.direction.diagUpRight) {
                 this.y -= this.speed
@@ -331,7 +322,6 @@ class Ball {
         // This puts a ball on board to start
         this.render = function () {
 
-            
             /// Makes a sphere ball
             ctx.beginPath()
             ctx.arc(this.x, this.y, this.radius, this.sAngle, this.eAngle)
@@ -347,7 +337,6 @@ class Ball {
                 ballOne.bounceDirectionUpLeftFromPaddle()
             }
         }
-
     }
 }
 
@@ -437,7 +426,6 @@ const detectHit = (thing) => {
 }
 
 
-
 ///////   GAME LOOP   //////////////
 
 // Player and paddle will start in static spot. When hit START button, player starts moving. For testing, will either manually move or have moving from start.
@@ -520,7 +508,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById("wholeStartBody").style.display = ''
     document.getElementById("wholeGameBody").style.display = 'none'
     document.getElementById("wholeEndBody").style.display = 'none'
-
 })
 
 // Start page functions
